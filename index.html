@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>quarry-quest</title>
+<meta name="application-name" content="quarry-quest">
+<meta name="description" content="Drive a trusty digger through dusty quarry tracks, scoop up cargo and beat the clock.">
+<meta name="theme-color" content="#0b1518">
+<link rel="manifest" href="appmanifest.json">
+<link rel="icon" type="image/png" sizes="256x256" href="icon-256.png">
+<link rel="apple-touch-icon" href="icon-256.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script src="game-driver.js"></script>
+<style>
+  * { padding: 0; margin: 0; }
+  html, body { background: #000; color: #fff; overflow: hidden; touch-action: none; -ms-touch-action: none; }
+  canvas { touch-action: none; -ms-touch-action: none; -webkit-transform: translateZ(0); }
+  #gamecanvasdiv { position: fixed; inset: 0; }
+  #gamecanvas { display: block; }
+</style>
+</head>
+<body>
+<div id="gamecanvasdiv">
+  <canvas id="gamecanvas" width="1024" height="576"></canvas>
+</div>
+<script src="jquery.js"></script>
+<script src="runtime.js"></script>
+<script>
+  jQuery(document).ready(function () {
+    rt_createRuntime("gamecanvas");
+  });
+  function onVisibilityChanged() {
+    if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden) rt_setSuspended(true);
+    else rt_setSuspended(false);
+  }
+  document.addEventListener("visibilitychange", onVisibilityChanged, false);
+  document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+  document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+  document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+</script>
+</body>
+</html>
